@@ -1,13 +1,184 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/*! locomotive-scroll v4.1.3 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+html.has-scroll-smooth {
+  overflow: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.has-scroll-smooth body {
+  overflow: hidden;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-container] {
+  height: 100vh;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-section] {
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  height: 100%;
+}
+
+.c-scrollbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 11px;
+  height: 100%;
+  transform-origin: center right;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0;
+}
+.c-scrollbar:hover {
+  transform: scaleX(1.45);
+}
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+  opacity: 1;
+}
+[data-scroll-direction="horizontal"] .c-scrollbar {
+  width: 100%;
+  height: 10px;
+  top: auto;
+  bottom: 0;
+  transform: scaleY(1);
+}
+[data-scroll-direction="horizontal"] .c-scrollbar:hover {
+  transform: scaleY(1.3);
+}
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: black;
+  opacity: 0.5;
+  width: 7px;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+[data-scroll-direction="horizontal"] .c-scrollbar_thumb {
+  right: auto;
+  bottom: 0;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Satoshi", sans-serif;
+  cursor: none;
+}
+::selection {
+  background-color: #920dff36;
+}
+@layer base {
+  @font-face {
+    font-family: "Satoshi";
+    font-weight: 300;
+    src: url("./assets/fonts/Satoshi-Light.woff2") format("woff2"),
+      url("./assets/fonts/Satoshi-Light.woff") format("woff");
+  }
+  @font-face {
+    font-family: "Satoshi";
+    font-weight: 400;
+    src: url("./assets/fonts/Satoshi-Regular.woff2") format("woff2"),
+      url("./assets/fonts/Satoshi-Regular.woff") format("woff");
+  }
+  @font-face {
+    font-family: "Satoshi";
+    font-weight: 500;
+    src: url("./assets/fonts/Satoshi-Medium.woff2") format("woff2"),
+      url("./assets/fonts/Satoshi-Medium.woff") format("woff");
+  }
+  @font-face {
+    font-family: "Satoshi";
+    font-weight: 900;
+    src: url("./assets/fonts/Satoshi-Black.woff2") format("woff2"),
+      url("./assets/fonts/Satoshi-Black.woff") format("woff");
+  }
+  @font-face {
+    font-family: "Satoshi";
+    font-style: italic;
+    src: url("./assets/fonts/Satoshi-Italic.woff2") format("woff2"),
+      url("./assets/fonts/Satoshi-Italic.woff") format("woff");
+  }
+  @font-face {
+    font-family: "Cabinet";
+    font-weight: 700;
+    src: url("./assets/fonts/CabinetGrotesk-Bold.woff2") format("woff2"),
+      url("./assets/fonts/CabinetGrotesk-Bold.woff") format("woff");
+  }
+  @font-face {
+    font-family: "Cabinet";
+    font-weight: 500;
+    src: url("./assets/fonts/CabinetGrotesk-Medium.woff2") format("woff2"),
+      url("./assets/fonts/CabinetGrotesk-Medium.woff") format("woff");
+  }
+}
+
+body {
+  cursor: none;
+}
+.lineParent {
+  overflow: hidden;
+  /* border: 1px solid red; */
+}
+/* flex overflow-hidden h-[40vh] select-none gap-[0.2rem] pt-[11rem] pb-[12rem] */
+
+/* .marquee:hover {
+  /* -webkit-text-stroke: 1.5px #ff730d;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  -webkit-font-smoothing: antialiased; 
+  transform: skew(-10deg);
+} */
+
+/* flex-shrink-0 flex items-center justify-between gap-[0.2rem] min-w-full */
+
+.marquee-group {
+  animation: scroll 10s linear infinite;
+}
+
+.marquee-group span {
+  font-size: 15vw;
+  font-weight: 900;
+  font-family: "Cabinet", sans-serif;
+  color: #000;
+  white-space: nowrap;
+}
+
+.marquee-group span span {
+  font-size: 5vw;
+  color: #ff730d;
+  vertical-align: 70%;
+}
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 0.2rem));
+  }
 }
